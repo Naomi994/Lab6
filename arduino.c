@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <Arduino.h>
 int ledNum = 13;
 int setTime = 1000; 
 void setup(){
