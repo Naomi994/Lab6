@@ -1,14 +1,21 @@
-#include <stdio.h>
-#include <Arduino.h>
-int ledNum = 13;
-int setTime = 1000; 
-void setup(){
-  pinMode(ledNum,OUTPUT); // outputs voltage
-}
+#inclue <avr/io.h> 
 
-void loop(){
-  digitalWrite(ledNum, HIGH);
-  delay(setTime);
-  digitalWrite(ledNum,LOW);
-  delay(setTime); 
-} 
+int main(){
+  DDRD = 0b00000000;  #Switch 1 
+  PORTD = 0b00001100;  # Switch 2 
+  DDRB = 0b00000011;  
+
+  while(1){
+    # Checks to see if pin 2 is LOW
+    if((PIND & 0b00000100) == 0){
+      PORTB = PORTB | 0b00000001;
+    }else{
+      PORTB = PORTB & 0b11111110;
+  }
+    if((PIND & 0b00001000) == 0){
+      PORTB = PORTB | 0b00000010; 
+    }else{ 
+      PORTB = PORTB & 0b11111101; 
+}
+  }
+}
